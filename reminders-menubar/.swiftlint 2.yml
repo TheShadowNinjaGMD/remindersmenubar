@@ -1,0 +1,116 @@
+# SwiftLint configuration
+# Docs: https://github.com/realm/SwiftLint
+
+# Paths
+included:
+  - .
+excluded:
+  - Carthage
+  - Pods
+  - .build
+  - DerivedData
+  - Scripts
+
+# Swift version (optional, helps some rules)
+swift_version: 6.0
+
+# Reporter for CI (can change to xcode, json, etc.)
+reporter: xcode
+
+# Opt-in rules that are generally helpful
+opt_in_rules:
+  - empty_count
+  - first_where
+  - fatal_error_message
+  - force_unwrapping
+  - implicit_return
+  - joined_default_parameter
+  - nimble_operator
+  - prohibited_super_call
+  - strict_fileprivate
+  - trailing_closure
+  - vertical_whitespace_between_cases
+
+# Disabled rules that are often noisy initially
+disabled_rules:
+  - identifier_name            # Relax short names at first
+  - type_name                  # Relax type length at first
+  - function_body_length       # Often too strict in legacy code
+  - file_length                # Often too strict in legacy code
+  - line_length                # We'll warn rather than fail below
+
+# Rule configurations
+line_length:
+  warning: 140
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_interpolated_strings: true
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+cyclomatic_complexity:
+  warning: 12
+  error: 18
+
+large_tuple:
+  warning: 3
+  error: 4
+
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+force_cast: error
+force_try: warning
+
+# Naming
+type_name:
+  min_length: 3
+  max_length: 60
+  excluded:
+    - ID
+    - URL
+    - VM
+
+identifier_name:
+  min_length: 2
+  max_length: 50
+  allowed_symbols: [_]
+  excluded:
+    - id
+    - x
+    - y
+    - i
+    - j
+    - k
+
+# File headers (optional)
+# file_header:
+#   required: true
+#   pattern: "^//\\s.*$"
+
+# Per-file overrides (optional)
+# configurable_rules: []
+
+# Custom rules (examples; add your own as needed)
+custom_rules:
+  no_todos:
+    included: ".*\.swift"
+    name: "Avoid TODOs"
+    regex: "TODO|FIXME"
+    message: "Please resolve TODO/FIXME before merging."
+    severity: warning
+
+  no_force_unwrap_in_ui:
+    included: ".*View.*\.swift"
+    name: "No force unwraps in UI files"
+    regex: "\!\."
+    message: "Avoid force unwraps in UI code."
+    severity: warning

@@ -1,0 +1,60 @@
+import SwiftUI
+
+struct AboutSettingsTab: View {
+    // NOTE: Observing userPreferences triggers body re-evaluation when language changes.
+    @ObservedObject var userPreferences = UserPreferences.shared
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 0) {
+            Image(nsImage: NSApp.applicationIconImage)
+                .frame(width: 140, height: 140)
+                .padding(24)
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text(AppConstants.appName)
+                    .font(.system(size: 28))
+
+                Text(rmbLocalized(.appVersionDescription, arguments: AppConstants.displayVersion))
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+                    .padding(.top, 12)
+
+                Text(rmbLocalized(
+                    .remindersMenuBarAppAboutDescription,
+                    arguments: AppConstants.appName,
+                    "GNU General Public License v3.0"
+                ))
+                .font(.system(size: 11))
+                .padding(.trailing, 24)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, 28)
+
+                HStack {
+                    Button(action: {
+                        if let url = URL(string: "https://github.com/TheShadowNinjaGMD/remindersmenubar") {
+                            NSWorkspace.shared.open(url)
+                        }
+                    }) {
+                        Text(rmbLocalized(.seeMoreOnGitHubButton))
+                    }
+
+                    Button(action: {
+                        UpdateController.shared.checkForUpdates()
+                    }) {
+                        Text(rmbLocalized(.checkForUpdatesButton))
+                    }
+                }
+                .padding(.top, 16)
+            }
+            .padding(.top, 32)
+            .padding(.bottom, 20)
+            .padding(.trailing, 24)
+        }
+        .padding(.horizontal, 12)
+    }
+}
+
+#Preview {
+    AboutSettingsTab()
+}

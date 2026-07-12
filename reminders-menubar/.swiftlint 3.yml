@@ -1,0 +1,38 @@
+disabled_rules:
+  # cyclomatic_complexity
+  # function_body_length
+  # type_body_length
+  # file_length
+  # nesting
+  # todo
+  # force_cast
+  # force_try
+  # force_unwrapping
+  # implicit_return
+  # private_outlet
+  # discouraged_optional_boolean
+  # empty_count
+  # implicitly_unwrapped_optional
+  # trailing_whitespace
+  # unused_import
+
+line_length:
+  warning: 120
+  error: 200
+
+# Project-specific adjustments
+# Feel free to tweak these defaults to match your code style
+trailing_comma:
+  mandatory_comma: false
+  allow_trailing_comma: true
+
+comma: warning
+
+opening_brace:
+  severity: warning
+
+closure_spacing:
+  severity: warning
+
+explicit_init:
+  severity: warning
