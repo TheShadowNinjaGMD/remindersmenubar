@@ -52,15 +52,7 @@ codesign --force --deep --sign - /path/to/remindersmenubar.app
 
 ## Contributing
 
-Contributions are welcome! If you would like to help improve this project:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix: `git checkout -b feature-name`.
-3. Commit your changes with descriptive messages.
-4. Push your branch to GitHub: `git push origin feature-name`.
-5. Open a **Pull Request** detailing your changes.
-
-For major modifications, please open an issue first to discuss what you would like to change.
+Contributions are always welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) to learn about our development workflow, reporting bugs, and submitting pull requests. For major modifications, please open an issue first to discuss what you would like to change.
 
 ## License
 
